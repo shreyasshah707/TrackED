@@ -13,15 +13,3 @@
 * **Machine Learning:** Scikit-Learn (RandomForest/SVM), Joblib
 * **LLM:** Google Gemini 2.0 Flash
 * **Environment:** Python (dotenv)
-
-## 🚀 Getting Started
-
-### 1. Prerequisites
-* Python 3.9+
-* A Google Gemini API Key (Get one at [Google AI Studio](https://aistudio.google.com/))
-
-### 2. Installation
-Clone the repository:
-```bash
-git clone [https://github.com/shreyasshah707/TrackED.git](https://github.com/shreyasshah707/TrackED.git)
-cd TrackED
