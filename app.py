@@ -62,13 +62,13 @@ def get_recommendations(stress_label, reasons):
         ]
 
     if "Insufficient sleep (under 5 hours)" in reasons:
-        recs.append("Aim for 7–8 hours of sleep")
+        recs.append("Aim for 7-8 hours of sleep")
     if "Poor sleep quality" in reasons:
         recs.append("Avoid screens before bedtime")
     if "Overstudying without enough rest" in reasons:
-        recs.append("Use Pomodoro (25–5 rule)")
+        recs.append("Use Pomodoro (25-5 rule)")
     if "Low physical activity" in reasons:
-        recs.append("Add 20–30 mins of exercise")
+        recs.append("Add 20-30 mins of exercise")
     if "High academic pressure" in reasons:
         recs.append("Break tasks into smaller goals")
     if "Low mood levels" in reasons:
@@ -85,7 +85,7 @@ def rule_based_study_plan(stress_label, study_hours):
     }
 
     return f"""
-### 📅 Weekly Study Plan (Offline Mode)
+### 📅 Weekly Study Plan
 
 | Day | Time | Task | Notes |
 |----|------|------|------|
@@ -97,7 +97,7 @@ def rule_based_study_plan(stress_label, study_hours):
 | Sat | 1h | Mock / Summary | Stop early |
 | Sun | — | Rest | Recovery day |
 
-⚠️ *AI quota exceeded — this plan was generated locally.*
+⚠️ *This plan was generated locally since AI quota exceeded.*
 """
 
 #Gemini Planner
@@ -113,7 +113,7 @@ Lecture Schedule:
 Create a realistic weekly study plan as a Markdown table.
 """
 
-    try:
+    try: 
         response = client.models.generate_content(
             model="models/gemini-2.0-flash",
             contents=prompt,
@@ -130,11 +130,11 @@ Create a realistic weekly study plan as a Markdown table.
         else:
             raise e
 
-#UI
-st.set_page_config("TrackED – Student Planner", layout="centered")
-st.title("🎓 TrackED – Smart Student Planner")
-st.caption("Stress-aware study planning using ML + Gemini")
 
+#UI
+st.set_page_config("TrackED: Smart Student Planner")
+st.title("🎓TrackED: Smart Student Planner")
+st.caption("Stress-aware study planner using ML + Gemini")
 tabs = st.tabs(["🧠 Stress Check", "📖 Study Planner"])
 
 #Stress UI
@@ -142,12 +142,12 @@ with tabs[0]:
     st.subheader("Stress Assessment")
 
     sleep_hours = st.slider("Sleep Hours", 0.0, 9.0, 7.0)
-    sleep_quality = 0 if sleep_hours == 0 else st.slider("Sleep Quality (1–5)", 1, 5, 4)
+    sleep_quality = 0 if sleep_hours == 0 else st.slider("Sleep Quality (1-5)", 1, 5, 4)
     study_hours = st.slider("Study Hours / Day", 0.0, 10.0, 5.0)
     screen_time = st.slider("Screen Time", 0.0, 12.0, 5.0)
-    mood = st.slider("Mood (1–5)", 1, 5, 4)
+    mood = st.slider("Mood (1-5)", 1, 5, 4)
     exercise_minutes = st.slider("Exercise Minutes", 0, 120, 30)
-    academic_pressure = st.slider("Academic Pressure (1–5)", 1, 5, 3)
+    academic_pressure = st.slider("Academic Pressure (1-5)", 1, 5, 3)
 
     if st.button("🔍 Predict Stress"):
         features = scaler.transform([[
